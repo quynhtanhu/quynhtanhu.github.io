@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <meta name="description" content="Quynh (Chloe) Ta portfolio website." />
+ <meta name="theme-color" content="#fff7fb" />
+ <title>Quynh (Chloe) Ta | Portfolio</title>
+
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Playfair+Display:wght@700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+
+ <style>
+   :root{
+     --ink:#352f39;
+     --muted:#736978;
+     --pink:#ffd7e6;
+     --lav:#ddd3ff;
+     --peach:#ffe2cf;
+     --mint:#d9f0e1;
+     --sky:#dcecff;
+     --line:rgba(96,75,106,.10);
+     --shadow:0 20px 55px rgba(84,62,93,.10);
+   }
+
+
+   *{box-sizing:border-box}
+   html{scroll-behavior:smooth}
+   body{
+     margin:0;
+     color:var(--ink);
+     background:
+       radial-gradient(circle at 0% 0%, rgba(255,215,230,.65), transparent 26%),
+       radial-gradient(circle at 100% 10%, rgba(221,211,255,.70), transparent 28%),
+       radial-gradient(circle at 10% 100%, rgba(217,240,225,.55), transparent 24%),
+       linear-gradient(180deg,#fff9fc 0%, #fffdf9 48%, #faf9ff 100%);
+     font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+     line-height:1.6;
+     overflow-x:hidden;
+   }
+
+
+   a{color:inherit;text-decoration:none}
+   img{display:block;max-width:100%}
+
+
+   .glow{
+     position:fixed;
+     width:360px;height:360px;
+     border-radius:50%;
+     filter:blur(80px);
+     opacity:.26;
+     pointer-events:none;
+     z-index:-1;
+   }
+   .glow.one{left:-120px;top:40vh;background:#ffc3dc}
+   .glow.two{right:-120px;top:68vh;background:#cdbfff}
+
+
+   .topbar{
+     position:sticky;
+     top:12px;
+     z-index:50;
+     width:min(1160px, calc(100% - 24px));
+     margin:12px auto 0;
+     min-height:70px;
+     padding:10px 14px 10px 20px;
+     border-radius:24px;
+     display:flex;
+     align-items:center;
+     justify-content:space-between;
+     background:rgba(255,255,255,.74);
+     border:1px solid rgba(255,255,255,.90);
+     backdrop-filter:blur(16px);
+     -webkit-backdrop-filter:blur(16px);
+     box-shadow:0 12px 30px rgba(80,60,90,.08);
+   }
+
+
+   .brand{display:flex;align-items:center;gap:12px}
+   .brand-icon{
+     width:42px;height:42px;border-radius:15px;display:grid;place-items:center;
+     background:linear-gradient(135deg,var(--pink),var(--lav));
+     font-family:"Playfair Display",serif;font-size:1rem;
+     box-shadow:inset 0 0 0 1px rgba(255,255,255,.8);
+   }
+   .brand-text strong{display:block;letter-spacing:-.02em;font-size:1rem}
+   .brand-text span{
+     display:block;color:#9b8f9d;font-size:.68rem;font-weight:800;
+     letter-spacing:.10em;text-transform:uppercase;
+   }
+
+
+   .nav{display:flex;align-items:center;gap:8px}
+   .nav a{
+     padding:10px 13px;border-radius:14px;font-size:.88rem;font-weight:800;
+     color:#695f6f;transition:.2s ease;
+   }
+   .nav a:hover{background:#fff6fb;color:#b36184;transform:translateY(-1px)}
+   .nav .cta{background:var(--ink);color:#fff;padding-inline:16px}
+
+
+   .menu{display:none;width:44px;height:44px;border:0;border-radius:14px;background:#fff;cursor:pointer}
+   .menu span{display:block;width:20px;height:2px;background:var(--ink);margin:4px auto;border-radius:99px}
+
+
+   .wrap{width:min(1160px, calc(100% - 40px));margin:auto}
+   .section{padding:108px 0}
+
+
+   .eyebrow{
+     margin:0 0 12px;color:#a96d87;font-size:.78rem;font-weight:900;
+     letter-spacing:.18em;text-transform:uppercase;
+   }
+   .title{
+     margin:0;font-family:"Playfair Display",serif;
+     font-size:clamp(2.6rem,5vw,4.8rem);line-height:1.02;letter-spacing:-.05em;
+   }
+   .muted{color:var(--muted)}
+
+
+   .reveal{opacity:0;transform:translateY(25px);transition:opacity .8s ease, transform .8s ease}
+   .reveal.show{opacity:1;transform:none}
+
+
+   /* HERO */
+   .hero{
+     display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;
+     min-height:780px;padding:78px 0 54px;
+   }
+   .kicker{
+     display:inline-flex;align-items:center;gap:10px;padding:9px 13px;border-radius:999px;
+     background:rgba(255,255,255,.80);border:1px solid var(--line);color:#7c7080;
+     font-size:.84rem;font-weight:800;margin-bottom:22px;box-shadow:0 10px 22px rgba(80,62,90,.05);
+   }
+   .kicker i{
+     width:8px;height:8px;border-radius:50%;background:#9fd0b0;
+     box-shadow:0 0 0 5px rgba(159,208,176,.14);
+   }
+
+
+   .hero h1{
+     margin:0 0 24px;font-family:"Playfair Display",serif;
+     font-size:clamp(4rem,8vw,7.6rem);line-height:.86;letter-spacing:-.065em;
+   }
+   .hero h1 .main{position:relative;display:inline-block;z-index:1}
+   .hero h1 .main::after{
+     content:"";position:absolute;left:-.03em;right:-.03em;bottom:.06em;height:.24em;
+     background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:999px;
+     z-index:-1;transform:rotate(-2deg);opacity:.84;
+   }
+   .hero h1 .sub{display:block;color:#695d74;font-size:.60em;font-style:italic}
+   .scribble{
+     display:inline-block;margin-left:8px;transform:translateY(-10px) rotate(-4deg);
+     font-family:"Caveat",cursive;font-size:.28em;color:#ba6a8e;letter-spacing:.03em;
+   }
+
+
+   .statement{
+     max-width:700px;margin:0 0 28px;font-size:clamp(1.05rem,1.7vw,1.22rem);
+     color:var(--muted);line-height:1.72;
+   }
+   .actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+   .btn{
+     min-height:52px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;
+     gap:8px;border-radius:999px;font-size:.92rem;font-weight:900;transition:.2s ease;
+   }
+   .btn:hover{transform:translateY(-2px)}
+   .btn-dark{background:linear-gradient(135deg,#5f5368,#37313d);color:#fff;box-shadow:0 12px 26px rgba(57,47,65,.18)}
+   .btn-light{background:rgba(255,255,255,.82);border:1px solid var(--line);color:var(--ink)}
+
+
+   .facts{display:flex;flex-wrap:wrap;gap:9px}
+   .facts span{
+     padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.74);
+     border:1px solid var(--line);color:#776d7d;font-size:.82rem;font-weight:700;
+   }
+
+
+   .hero-visual{display:flex;justify-content:center;align-items:center}
+   .photo-shell{position:relative;width:min(440px, 92%)}
+   .photo-card{
+     position:relative;padding:16px;border-radius:40px;
+     background:linear-gradient(145deg, rgba(255,255,255,.98), rgba(255,245,250,.95));
+     border:1px solid rgba(255,255,255,.96);
+     box-shadow:0 24px 70px rgba(75,58,84,.14);transform:rotate(1.2deg);
+   }
+   .photo-card img{
+     width:100%;aspect-ratio:1/1.1;object-fit:cover;object-position:center 24%;
+     border-radius:30px;background:#fff;
+   }
+   .tape{
+     position:absolute;top:-8px;left:50%;transform:translateX(-50%) rotate(-4deg);
+     width:92px;height:26px;background:rgba(255,243,198,.80);
+     border:1px solid rgba(160,131,70,.06);box-shadow:0 5px 10px rgba(99,80,40,.05);z-index:3;
+   }
+   .sticker{
+     position:absolute;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.95);
+     border:1px solid rgba(255,255,255,.96);box-shadow:0 12px 28px rgba(78,61,88,.10);
+     font-size:.78rem;color:#756a79;line-height:1.25;max-width:180px;
+   }
+   .sticker strong{display:block;color:var(--ink);font-size:1rem;margin-bottom:2px}
+   .s1{top:6%; right:-8%; background:#fff7fb}
+   .s2{top:-2%; left:-8%; background:#fffdf2}
+   .s3{left:-10%; bottom:12%; background:#f7fff8}
+
+
+   .section-head{
+     display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:40px;
+   }
+   .section-head p{max-width:430px;margin:0;color:var(--muted)}
+
+
+   /* ABOUT */
+   .bento{
+     display:grid;
+     grid-template-columns:1.2fr .82fr .98fr;
+     grid-auto-rows:210px;
+     gap:16px;
+   }
+   .card{
+     border-radius:30px;border:1px solid var(--line);box-shadow:0 18px 44px rgba(80,62,90,.08);
+     background:rgba(255,255,255,.74);overflow:hidden;
+   }
+   .story{
+     grid-row:span 2;padding:32px;display:flex;flex-direction:column;justify-content:space-between;
+     background:radial-gradient(circle at 90% 10%, rgba(255,215,230,.52), transparent 30%), rgba(255,255,255,.80);
+   }
+   .story .quote{
+     margin-top:32px;font-family:"Playfair Display",serif;
+     font-size:clamp(1.7rem,2.8vw,2.5rem);line-height:1.12;letter-spacing:-.03em;
+   }
+   .story .sign{
+     margin-top:20px;font-family:"Caveat",cursive;color:#ae6386;font-size:1.45rem;transform:rotate(-2deg);
+   }
+.metric{padding:24px;display:flex;flex-direction:column;justify-content:flex-end}
+   .metric .num{
+     font-family:"Playfair Display",serif;font-size:3rem;line-height:.95;letter-spacing:-.04em;
+   }
+   .metric small{
+     margin-top:8px;color:var(--muted);font-size:.88rem;font-weight:700;line-height:1.35;
+   }
+   .peach{background:linear-gradient(145deg,#fff,var(--peach))}
+   .lav{background:linear-gradient(145deg,#fff,var(--lav))}
+   .mint{background:linear-gradient(145deg,#fff,var(--mint))}
+   .sky{background:linear-gradient(145deg,#fff,var(--sky))}
+
+
+   .edu{
+     grid-column:span 2;padding:28px;display:flex;justify-content:space-between;align-items:center;gap:22px;
+     background:linear-gradient(135deg,#fff9fd,#f7f2ff);
+   }
+   .edu .school{
+     font-family:"Playfair Display",serif;font-size:1.95rem;line-height:1.05;letter-spacing:-.03em;
+   }
+   .edu p{margin:.35rem 0 0;color:var(--muted)}
+   .badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+   .badges span{
+     padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.8);
+     border:1px solid var(--line);font-size:.77rem;font-weight:800;white-space:nowrap;
+   }
+
+
+   /* SKILLS */
+   .skills-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:40px}
+   .skill{
+     min-height:220px;padding:26px;border-radius:30px;border:1px solid var(--line);
+     box-shadow:0 18px 44px rgba(80,62,90,.07);position:relative;overflow:hidden;
+   }
+   .skill::before{content:attr(data-icon);position:absolute;right:16px;bottom:-10px;font-size:5rem;opacity:.10}
+   .skill:nth-child(1){grid-column:span 7;background:linear-gradient(145deg,#fff,#fff0f7)}
+   .skill:nth-child(2){grid-column:span 5;background:linear-gradient(145deg,#fff,#f2eeff)}
+   .skill:nth-child(3){grid-column:span 5;background:linear-gradient(145deg,#fff,#f1fff6)}
+   .skill:nth-child(4){grid-column:span 7;background:linear-gradient(145deg,#fff,#edf7ff)}
+   .skill h3{margin:0 0 16px;font-size:1.12rem}
+   .chips{display:flex;flex-wrap:wrap;gap:9px}
+   .chips span{
+     padding:9px 11px;border-radius:999px;background:rgba(255,255,255,.76);
+     border:1px solid rgba(101,78,111,.07);color:#6a5f70;font-size:.83rem;font-weight:800;
+   }
+
+
+   /* PROJECTS */
+   .projects{display:grid;grid-template-columns:1.06fr .94fr;gap:18px;margin-top:40px}
+   .project{
+     min-height:380px;padding:30px;border-radius:32px;border:1px solid var(--line);box-shadow:var(--shadow);
+     display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;
+   }
+   .project.featured{
+     grid-row:span 2;min-height:760px;
+     background:linear-gradient(160deg,#fff7fb 0%, #ffe8f1 46%, #f1eafd 100%);
+   }
+   .project.p2{background:linear-gradient(160deg,#fbf9ff,#ece8ff)}
+   .project.p3{background:linear-gradient(160deg,#f9fffc,#eaf8ef)}
+   .pnum{
+     width:54px;height:54px;display:grid;place-items:center;border-radius:18px;
+     background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.86);
+     font-family:"Playfair Display",serif;font-size:1.3rem;
+   }
+   .project h3{
+     margin:18px 0 12px;font-family:"Playfair Display",serif;
+     font-size:clamp(2rem,4vw,3.6rem);line-height:.98;letter-spacing:-.045em;
+   }
+   .project.p2 h3,.project.p3 h3{font-size:clamp(1.8rem,3vw,2.45rem)}
+   .project p{color:var(--muted);max-width:590px}
+   .impact{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:24px 0 26px}
+   .impact div{
+     padding:14px;border-radius:18px;background:rgba(255,255,255,.70);
+     border:1px solid rgba(255,255,255,.84);
+   }
+   .impact strong{
+     display:block;font-family:"Playfair Display",serif;font-size:1.5rem;line-height:1;
+   }
+   .impact span{display:block;margin-top:4px;color:#786d7d;font-size:.76rem;font-weight:700}
+   .plink{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:900}
+   .plink::after{
+     content:"↗";width:31px;height:31px;display:grid;place-items:center;border-radius:50%;
+     background:rgba(255,255,255,.80);
+   }
+   .mark{
+     position:absolute;right:-20px;bottom:-38px;font-size:11rem;opacity:.09;
+     transform:rotate(-18deg);user-select:none;
+   }
+
+
+   /* EXPERIENCE */
+   .exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+   .exp{
+     min-height:320px;padding:26px;border-radius:28px;background:rgba(255,255,255,.74);
+     border:1px solid var(--line);box-shadow:0 18px 44px rgba(80,62,90,.07);
+   }
+   .exp::before{
+     content:"";display:block;width:12px;height:12px;border-radius:50%;margin-bottom:22px;
+     background:#f1a2c0;box-shadow:0 0 0 6px rgba(241,162,192,.14);
+   }
+   .exp:nth-child(2)::before{background:#bdaeff;box-shadow:0 0 0 6px rgba(189,174,255,.14)}
+   .exp:nth-child(3)::before{background:#9fceb1;box-shadow:0 0 0 6px rgba(159,206,177,.15)}
+   .date{
+     color:#a1768b;font-size:.77rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;
+   }
+   .exp h3{margin:10px 0 4px;font-size:1.12rem}
+   .org{margin:0 0 14px;color:#766b79;font-weight:800}
+   .exp p:last-child{color:var(--muted);font-size:.93rem}
+
+
+   /* CONTACT */
+   .contact{
+     position:relative;overflow:hidden;padding:52px;border-radius:38px;
+     background:linear-gradient(135deg,#ffeaf3,#efe9ff 60%, #e9f8ef);
+     border:1px solid var(--line);box-shadow:var(--shadow);
+   }
+   .contact::after{
+     content:"♡";position:absolute;right:5%;bottom:-55px;font-size:13rem;
+     color:rgba(191,116,151,.10);transform:rotate(-10deg);
+   }
+   .contact-inner{
+     position:relative;z-index:2;display:flex;justify-content:space-between;align-items:end;gap:40px;
+   }
+   .contact h2{
+     margin:0 0 12px;font-family:"Playfair Display",serif;
+     font-size:clamp(2.7rem,5vw,4.8rem);line-height:.97;letter-spacing:-.05em;max-width:700px;
+   }
+   .contact p{max-width:640px;color:var(--muted);margin-bottom:0}
+   .contact .note{
+     margin-top:24px;font-family:"Caveat",cursive;color:#a95f81;font-size:1.3rem;transform:rotate(-2deg);
+   }
+   .contact-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+
+   footer{
+     width:min(1160px, calc(100% - 40px));margin:auto;padding:18px 0 46px;
+     display:flex;justify-content:space-between;gap:18px;color:#908593;font-size:.84rem;
+   }
+
+
+   @media (max-width:980px){
+     .hero{grid-template-columns:1fr;min-height:auto;padding-top:84px}
+     .section-head{flex-direction:column;align-items:flex-start}
+     .bento{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
+     .story{grid-row:auto;min-height:380px}
+     .edu{grid-column:span 2;flex-direction:column;align-items:flex-start}
+     .badges{justify-content:flex-start}
+     .skills-grid{grid-template-columns:1fr 1fr}
+     .skill:nth-child(n){grid-column:span 1}
+     .projects{grid-template-columns:1fr}
+     .project.featured{grid-row:auto;min-height:650px}
+     .exp-grid{grid-template-columns:1fr}
+     .contact-inner{flex-direction:column;align-items:flex-start}
+   }
+
+
+   @media (max-width:760px){
+     .topbar{top:8px;margin-top:8px}
+     .menu{display:block}
+     .nav{
+       position:absolute;top:calc(100% + 9px);left:0; right:0;display:none;
+       flex-direction:column;align-items:stretch;padding:12px;border-radius:20px;
+       background:rgba(255,255,255,.97);box-shadow:0 18px 40px rgba(80,62,90,.12);
+     }
+     .nav.open{display:flex}
+     .nav a{text-align:center}
+     .wrap{width:min(100% - 28px,1160px)}
+     .section{padding:82px 0}
+     .hero{padding-top:70px;gap:30px}
+     .hero h1{font-size:clamp(3.6rem,17vw,6rem)}
+     .photo-shell{width:min(390px,92%)}
+     .s1{right:-2%}
+     .s2{left:0}
+     .s3{left:0}
+     .bento{grid-template-columns:1fr}
+     .edu{grid-column:auto}
+     .skills-grid{grid-template-columns:1fr}
+     .impact{grid-template-columns:1fr 1fr}
+     .contact{padding:34px 26px}
+     footer{flex-direction:column;gap:4px}
+   }
+
+
+   @media (max-width:520px){
+     .hero-visual{padding-bottom:110px}
+     .s1{top:auto;right:0;bottom:-64px}
+     .s2{top:-3%;left:4%}
+     .s3{left:0;bottom:-108px}
+     .impact{grid-template-columns:1fr}
+     .actions .btn,.contact-actions .btn{width:100%}
+   }
+
+
+   @media (prefers-reduced-motion:reduce){
+     *{scroll-behavior:auto!important}
+     .reveal{opacity:1;transform:none;transition:none}
+   }
+ </style>
+</head>
+<body>
+ <div class="glow one"></div>
+ <div class="glow two"></div>
+
+
+ <header class="topbar">
+   <a class="brand" href="#home">
+     <span class="brand-icon">QT</span>
+     <span class="brand-text">
+       <strong>Quynh Ta</strong>
+       <span>finance • creative • leadership</span>
+     </span>
+   </a>
+
+
+   <button class="menu" aria-label="Open navigation" aria-expanded="false">
+     <span></span><span></span><span></span>
+   </button>
+
+
+   <nav class="nav">
+     <a href="#about">About</a>
+     <a href="#skills">Skills</a>
+     <a href="#projects">Projects</a>
+     <a href="#experience">Experience</a>
+     <a href="#contact" class="cta">Say hello</a>
+   </nav>
+ </header>
+
+
+ <main>
+   <section class="wrap hero" id="home">
+     <div class="reveal">
+       <div class="kicker"><i></i> currently learning, building & creating</div>
+
+
+       <h1>
+         Hi, I’m <span class="main">Quynh</span><span class="scribble">nice to meet you ♡</span>
+         <span class="sub">(Chloe) Ta</span>
+       </h1>
+
+
+       <p class="statement">
+         I’m a Rutgers Business School finance student who blends analytical thinking, creative communication, and community-centered leadership to turn ideas into measurable impact.
+       </p>
+
+
+       <div class="actions">
+         <a class="btn btn-dark" href="#projects">Explore my work ↓</a>
+         <a class="btn btn-light" href="assets/Quynh-Chloe-Ta-Resume.pdf" target="_blank" rel="noopener">View résumé ↗</a>
+       </div>
+
+
+       <div class="facts">
+         <span>📍 New Brunswick, NJ</span>
+         <span>🎓 Rutgers Business School</span>
+         <span>✨ Finance • Class of 2029</span>
+       </div>
+     </div>
+
+
+     <div class="hero-visual reveal">
+       <div class="photo-shell">
+         <div class="photo-card">
+           <div class="tape"></div>
+           <img src="assets/quynh-headshot.png" alt="Portrait of Quynh (Chloe) Ta">
+         </div>
+
+
+         <div class="sticker s1">
+           <strong>4.0 GPA ✦</strong>
+           Dean’s List
+         </div>
+
+
+         <div class="sticker s2">
+           <strong>Top 10 National</strong>
+           Rising Star
+         </div>
+
+
+         <div class="sticker s3">
+           <strong>90+ volunteers</strong>
+           recruited & onboarded
+         </div>
+       </div>
+     </div>
+   </section>
+
+
+   <section class="wrap section" id="about">
+     <div class="section-head reveal">
+       <div>
+         <p class="eyebrow">01 — About me</p>
+         <h2 class="title">Numbers matter.<br>People do too.</h2>
+       </div>
+       <p>
+         I’m especially interested in the intersection of business strategy, financial analysis, communication, and meaningful community impact.
+       </p>
+     </div>
+
+
+     <div class="bento">
+       <article class="card story reveal">
+         <div>
+           <p class="eyebrow">My perspective</p>
+           <div class="quote">
+             I like work that is thoughtful, organized, creative — and actually useful to people.
+           </div>
+         </div>
+
+
+         <div>
+           <p>
+             Beyond the classroom, I enjoy building experiences that bring people together — from leading volunteer teams and fundraising workshops to creating outreach materials, coordinating events, and pitching ideas supported by research and financial modeling.
+           </p>
+           <div class="sign">— Chloe ♡</div>
+         </div>
+       </article>
+<article class="card metric peach reveal">
+         <span class="num">300</span>
+         <small>workshop participants engaged</small>
+       </article>
+
+
+       <article class="card metric lav reveal">
+         <span class="num">546</span>
+         <small>books collected for children</small>
+       </article>
+
+
+       <article class="card metric mint reveal">
+         <span class="num">2K+</span>
+         <small>club audience reached online</small>
+       </article>
+
+
+       <article class="card metric sky reveal">
+         <span class="num">60</span>
+         <small>members coordinated as vice president</small>
+       </article>
+
+
+       <article class="card edu reveal">
+         <div>
+           <p class="eyebrow">Education</p>
+           <div class="school">Rutgers Business School</div>
+           <p>Bachelor of Science in Finance • Expected May 2029</p>
+         </div>
+         <div class="badges">
+           <span>4.0 GPA</span>
+           <span>Dean’s List</span>
+           <span>Dean’s Scholarship</span>
+         </div>
+       </article>
+     </div>
+   </section>
+
+
+   <section class="wrap section" id="skills">
+     <p class="eyebrow reveal">02 — Skills</p>
+     <h2 class="title reveal">A little analytical.<br>A little creative.<br>A lot of curious.</h2>
+
+
+     <div class="skills-grid">
+       <article class="skill reveal" data-icon="📊">
+         <h3>Business & Analysis</h3>
+         <div class="chips">
+           <span>Financial Modeling</span>
+           <span>Market Research</span>
+           <span>Microsoft Excel</span>
+           <span>Microsoft Word</span>
+           <span>Business Presentations</span>
+         </div>
+       </article>
+
+
+       <article class="skill reveal" data-icon="🎀">
+         <h3>Creative & Marketing</h3>
+         <div class="chips">
+           <span>Canva</span>
+           <span>Social Media Design</span>
+           <span>Copywriting</span>
+           <span>Photography</span>
+           <span>Brand Messaging</span>
+         </div>
+       </article>
+
+
+       <article class="skill reveal" data-icon="🌷">
+         <h3>Leadership & Execution</h3>
+         <div class="chips">
+           <span>Project Leadership</span>
+           <span>Event Planning</span>
+           <span>Volunteer Recruitment</span>
+           <span>Fundraising</span>
+           <span>Team Coordination</span>
+         </div>
+       </article>
+
+
+       <article class="skill reveal" data-icon="💬">
+         <h3>Communication & Languages</h3>
+         <div class="chips">
+           <span>Vietnamese — Native</span>
+           <span>English — Professional</span>
+           <span>Digital Outreach</span>
+           <span>Community Engagement</span>
+         </div>
+       </article>
+     </div>
+   </section>
+
+
+   <section class="wrap section" id="projects">
+     <div class="section-head reveal">
+       <div>
+         <p class="eyebrow">03 — Projects</p>
+         <h2 class="title">Things I’ve helped<br>bring to life.</h2>
+       </div>
+       <p>
+         These projects show how I combine organization, creativity, business thinking, and people-centered leadership.
+       </p>
+     </div>
+
+
+     <div class="projects">
+       <article class="project featured reveal">
+         <div>
+           <div class="pnum">01</div>
+           <h3>Nang Ha Project</h3>
+           <p>
+             I founded and led a youth-led community initiative supporting underprivileged children in mountainous communities in Vietnam through fundraising workshops, creative activities, volunteer recruitment, and a book exchange fair.
+           </p>
+
+
+           <div class="impact">
+             <div><strong>90+</strong><span>volunteers recruited nationwide</span></div>
+             <div><strong>300</strong><span>workshop participants</span></div>
+             <div><strong>546</strong><span>books collected</span></div>
+             <div><strong>$200+</strong><span>raised for educational activities</span></div>
+           </div>
+         </div>
+
+
+         <a class="plink" href="https://www.linkedin.com/in/quynhnhutarutgers/" target="_blank" rel="noopener">View project reference</a>
+         <span class="mark">✿</span>
+       </article>
+
+
+       <article class="project p2 reveal">
+         <div>
+           <div class="pnum">02</div>
+           <h3>Vietnam Youth Start-up Challenge</h3>
+           <p>
+             Guided a team and pitched an original start-up concept supported by market research and financial modeling, earning The Rising Star recognition and a Top 10 National result.
+           </p>
+         </div>
+
+
+         <a class="plink" href="https://www.linkedin.com/in/quynhnhutarutgers/" target="_blank" rel="noopener">View project reference</a>
+         <span class="mark">✦</span>
+       </article>
+
+
+       <article class="project p3 reveal">
+         <div>
+           <div class="pnum">03</div>
+           <h3>Honors College Event Marketing</h3>
+           <p>
+             Created promotional materials, supported event marketing, coordinated outreach, and collaborated with planners, university staff, and communications/design leads.
+           </p>
+         </div>
+
+
+         <a class="plink" href="https://www.linkedin.com/in/quynhnhutarutgers/" target="_blank" rel="noopener">View project reference</a>
+         <span class="mark">♡</span>
+       </article>
+     </div>
+   </section>
+
+
+   <section class="wrap section" id="experience">
+     <p class="eyebrow reveal">04 — Experience</p>
+     <h2 class="title reveal">Leadership that looks<br>different in every room.</h2>
+
+
+     <div class="exp-grid">
+       <article class="exp reveal">
+         <div class="date">May 2025 — Present</div>
+         <h3>Marketing Division Member</h3>
+         <p class="org">Rutgers Honors Programming Committee</p>
+         <p>
+           Develop promotional materials, support event marketing, coordinate outreach, and collaborate with university staff and creative leads on Honors College programming.
+         </p>
+       </article>
+
+
+       <article class="exp reveal">
+         <div class="date">May 2023 — Aug 2025</div>
+         <h3>Founder, Leader & Head Organizer</h3>
+         <p class="org">Nang Ha Project</p>
+         <p>
+           Led fundraising workshops, volunteer recruitment, planning, and outreach to support educational activities for children in mountainous communities.
+         </p>
+       </article>
+
+
+       <article class="exp reveal">
+         <div class="date">Sep 2024 — Aug 2025</div>
+         <h3>Vice President</h3>
+         <p class="org">CVP’s Instrumental Music Club</p>
+         <p>
+           Coordinated a 60-member club, led content for a 2,000+ follower fanpage, and helped organize music shows for children with disabilities.
+         </p>
+       </article>
+     </div>
+   </section>
+
+
+   <section class="wrap section" id="contact">
+     <div class="contact reveal">
+       <div class="contact-inner">
+         <div>
+           <p class="eyebrow">05 — Contact</p>
+           <h2>Let’s make something meaningful.</h2>
+           <p>
+             I’m always happy to connect about internships, projects, finance, creative strategy, leadership, or simply a good idea worth building.
+           </p>
+           <div class="note">say hi — I promise I’m friendly :)</div>
+         </div>
+
+
+         <div class="contact-actions">
+           <a class="btn btn-dark" href="mailto:qnt4@scarletmail.rutgers.edu">Email me ✉</a>
+           <a class="btn btn-light" href="https://www.linkedin.com/in/quynhnhutarutgers/" target="_blank" rel="noopener">LinkedIn ↗</a>
+         </div>
+       </div>
+     </div>
+   </section>
+ </main>
+
+
+ <footer>
+   <span>Designed & built with pastel love ♡ by Quynh (Chloe) Ta.</span>
+   <span>© <span id="year"></span></span>
+ </footer>
+
+
+ <script>
+   const menu = document.querySelector(".menu");
+   const nav = document.querySelector(".nav");
+
+
+   menu?.addEventListener("click", () => {
+     const open = nav.classList.toggle("open");
+     menu.setAttribute("aria-expanded", String(open));
+   });
+
+
+   document.querySelectorAll(".nav a").forEach(link => {
+     link.addEventListener("click", () => {
+       nav.classList.remove("open");
+       menu?.setAttribute("aria-expanded", "false");
+     });
+   });
+
+
+   const items = document.querySelectorAll(".reveal");
+   if ("IntersectionObserver" in window) {
+     const io = new IntersectionObserver((entries) => {
+       entries.forEach(entry => {
+         if (entry.isIntersecting) {
+           entry.target.classList.add("show");
+           io.unobserve(entry.target);
+         }
+       });
+     }, { threshold: 0.12 });
+     items.forEach(item => io.observe(item));
+   } else {
+     items.forEach(item => item.classList.add("show"));
+   }
+
+
+   document.getElementById("year").textContent = new Date().getFullYear();
+ </script>
+</body>
+</html>
